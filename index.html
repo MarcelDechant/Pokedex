@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokedex</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Roboto&display=swap"
+        rel="stylesheet" />
+    <link rel="icon" href="img/Pokeball.png">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+
+<body onload="loadPokemon()">
+    <nav>
+        <div>
+            <div class="headline">
+                <img class="logo" src="img\Pokeball.png" alt="">
+                <img class="logoName" src="img\Pokedex.png" alt="">
+            </div>
+            <div class="search">
+                <input class="searchNumber" type="number" min="1" placeholder="Search Pokemon Number....">
+                <input class="searchName" type="text" placeholder="Search Pokemon Name....">
+            </div>
+        </div>
+
+    </nav>
+    <div>
+        <div class="loding-screen"></div>
+        <div class="single-card"></div>
+        <div class="allPokemons">
+            <div class="pokecard">
+                <div id="pokedex">
+                    <div class="poke-num-name">
+                        <h2 id="pokeNumber">#</h2>
+                        <h1 id="pokeName">Name</h1>
+                    </div>
+                    <div class="typeAndImage">
+                        <div id="type"></div>
+                        <img id="pokeimg">
+                        <img class="PokeballTranzparent" src="img/Pokeball-tranzparent.png" alt="">
+                    </div>
+                </div>
+                <div class="info-container"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

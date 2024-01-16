@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    background-image: url('img/pattern.jpg');
+    font-family: "Open Sans", sans-serif;
+}
+
+nav {
+    background-color: #434343;
+    width: 100%;
+    padding: 30px 0px;
+
+}
+
+.headline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    height: 70px;
+}
+
+.logoName {
+    height: 110px;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+
+}
+
+.search input {
+    height: 25px;
+    width: 200px;
+    text-align: center;
+}
+
+.searchNumber {
+    margin-right: 5px;
+    border-top-left-radius: 12.5px;
+    border-bottom-left-radius: 12.5px;
+}
+
+.searchName {
+    margin-left: 5px;
+    border-top-right-radius: 12.5px;
+    border-bottom-right-radius: 12.5px;
+}
+
+.pokecard {
+    width: 300px;
+    display: flex;
+    background-color: white;
+    margin: 20px;
+}
+
+
+#pokedex {
+    display: flex;
+    background-color: #FB6C6C;
+    color: white;
+    padding: 24px;
+    flex-direction: column;
+    border-radius: 25px;
+}
+
+#pokeNumber {
+    margin: 0;
+}
+
+#pokeName {
+    margin-top: 0;
+}
+
+.typeAndImage {
+    display: flex;
+}
+
+#type {
+    background-color: #F88D8D;
+    height: 22px;
+    width: 50px;
+    padding: 3px;
+    text-align: center;
+    border-radius: 11px;
+}
+
+#pokeimg {
+    position: relative;
+    z-index: 1;
+    height: 200px;
+    margin-left: 40px;
+}
+
+.PokeballTranzparent {
+    position: relative;
+    opacity: 0.1;
+    height: 150px;
+    width: 150px;
+    z-index: 0;
+    margin-top: 60px;
+    margin-left: -150px;
+
+}
+
+.info-container {
+    background-color: rgb(236, 232, 4);
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-top: -40px;
+    min-height: 100px;
+
+}
