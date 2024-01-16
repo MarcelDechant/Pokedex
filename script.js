@@ -1,5 +1,5 @@
 let currentPokemon;
-let firstPokemon = 0;
+let firstPokemon = 1;
 let lastPokemon = 15;
 
 
@@ -20,17 +20,23 @@ let lastPokemon = 15;
 
 
 async function loadPokemon() {
-    // let url = 'https://pokeapi.co/api/v2/pokemon/charizard';
-    let url = 'https://pokeapi.co/api/v2/pokemon/charmander';
-    // let url = 'https://pokeapi.co/api/v2/pokemon/charmeleon';
+    for (let i = firstPokemon; i < lastPokemon; i++) {
 
+        let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        // let url = 'https://pokeapi.co/api/v2/pokemon/charmeleon';
+        // let url = 'https://pokeapi.co/api/v2/pokemon/charizard';
 
-    let response = await fetch(url);
-    currentPokemon = await response.json();
+        let response = await fetch(url);
+        currentPokemon = await response.json();
 
-    console.log('Loaded pokemon', currentPokemon);
+        console.log('Loaded pokemon', currentPokemon);
+
+        createCard();
+
+    }
     renderPokemonInfo();
 }
+
 
 function renderPokemonInfo() {
     document.getElementById('pokeName').innerHTML = currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);

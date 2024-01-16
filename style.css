@@ -64,6 +64,7 @@ nav {
     padding: 24px;
     flex-direction: column;
     border-radius: 25px;
+    width: 100%;
 }
 
 #pokeNumber {
@@ -102,14 +103,5 @@ nav {
     z-index: 0;
     margin-top: 60px;
     margin-left: -150px;
-
-}
-
-.info-container {
-    background-color: rgb(236, 232, 4);
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    margin-top: -40px;
-    min-height: 100px;
 
 }
