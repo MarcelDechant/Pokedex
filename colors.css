@@ -2,59 +2,78 @@
     background-color: #FB6C6C;
 
 }
-
 .bgColorFire2 {
     background-color: #F88D8D;
 }
-
 .bgColorGrass1 {
     background-color: #46D1B1;
 }
-
 .bgColorGrass2 {
     background-color: #61E2CB;
 }
-
 .bgColorWater1 {
     background-color: #77BEFE;
 }
-
 .bgColorWater2 {
     background-color: #90D2FE;
 }
-
-.bgColorBug1 {}
-
-.bgColorBug2 {}
-
-.bgColorNormal1 {}
-
-.bgColorNormal2 {}
-
-.bgColorPoison1 {}
-
-.bgColorPoison2 {}
-
+.bgColorBug1 {
+    background-color: #A8B920;
+}
+.bgColorBug2 {
+    background-color: #CBD579;
+}
+.bgColorNormal1 {
+    background-color: #A7A877;
+}
+.bgColorNormal2 {
+    background-color: #CACBAD;
+}
+.bgColorPoison1 {
+    background-color: #9F5BBA;
+}
+.bgColorPoison2 {
+    background-color: #B784CB;
+}
 .bgColorElectric1 {
     background-color: #FFD970;
 }
-
 .bgColorElectric2 {
     background-color: #FFE681;
 }
-
-.bgColorGround1 {}
-
-.bgColorGround2 {}
-
-.bgColorPsychic1 {}
-
+.bgColorGround1 {
+    background-color: #CA8179;
+}
+.bgColorGround2 {
+    background-color: #D7A09A;
+}
+/* .bgColorPsychic1 {}
 .bgColorPsychic2 {}
-
 .bgColorFairy1 {}
-
 .bgColorFairy2 {}
-
-.bgColorfighting1 {}
-
-.bgColorfighting2 {}
+.bgColorFighting1 {}
+.bgColorFighting2 {} */
+.bgColorRock1 {
+    background-color: #B8A038;
+}
+.bgColorRock2 {
+    background-color: #D4C688;
+}
+.bgColorSteel1 {
+    background-color: #B8B8D0;
+}
+.bgColorSteel2 {
+    background-color: #D4D4E3;
+}
+.bgColorIce1 {
+    background-color: #99D7D8;
+}
+.bgColorIce2 {
+    background-color: #C2E7E8;
+}
+.bgColorDragon1 {
+    background-color: #7138F8;
+}
+.bgColorDragon2 {
+    background-color: #AA88FB;
+}
