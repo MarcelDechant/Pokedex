@@ -49,8 +49,13 @@ nav {
     border-bottom-right-radius: 12.5px;
 }
 
+#allPokemons {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .pokecard {
-    width: 300px;
+    width: 350px;
     display: flex;
     background-color: white;
     margin: 20px;
@@ -67,31 +72,31 @@ nav {
     width: 100%;
 }
 
-#pokeNumber {
+.nMargin {
     margin: 0;
 }
 
-#pokeName {
-    margin-top: 0;
-}
+
 
 .typeAndImage {
     display: flex;
 }
 
-#type {
+.type {
     background-color: #F88D8D;
     height: 22px;
     width: 50px;
     padding: 3px;
     text-align: center;
     border-radius: 11px;
+    margin-top: 8px;
 }
 
-#pokeimg {
+.pokeimg {
     position: relative;
     z-index: 1;
     height: 200px;
+    width: 200px;
     margin-left: 40px;
 }
 

@@ -1,7 +1,7 @@
 let currentPokemon;
 let firstPokemon = 1;
 let lastPokemon = 15;
-
+let allPokemons = [];
 
 
 
@@ -28,10 +28,10 @@ async function loadPokemon() {
 
         let response = await fetch(url);
         currentPokemon = await response.json();
-
+        allPokemons.push(currentPokemon);
         console.log('Loaded pokemon', currentPokemon);
 
-        createCard();
+
 
     }
     renderPokemonInfo();
@@ -39,8 +39,12 @@ async function loadPokemon() {
 
 
 function renderPokemonInfo() {
-    document.getElementById('pokeName').innerHTML = currentPokemon['name'].charAt(0).toUpperCase() + currentPokemon['name'].slice(1);
-    document.getElementById('pokeimg').src = currentPokemon['sprites']['other']['dream_world']['front_default'];
-    document.getElementById('pokeNumber').innerHTML += currentPokemon['id'];
-    document.getElementById('type').innerHTML = currentPokemon['types']['0']['type']['name'].charAt(0).toUpperCase() + currentPokemon['types']['0']['type']['name'].slice(1);;
+    for (let j = 0; j < allPokemons.length; j++) {
+        createCard(j);
+
+        document.getElementById(`pokeName${j}`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
+        document.getElementById(`pokeimg${j}`).src = allPokemons[j]['sprites']['other']['dream_world']['front_default'];
+        document.getElementById(`pokeNumber${j}`).innerHTML += allPokemons[j]['id'];
+        document.getElementById(`type${j}`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
+    }
 }
