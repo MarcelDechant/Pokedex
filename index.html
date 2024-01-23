@@ -12,8 +12,10 @@
     <link rel="icon" href="img/Pokeball.png">
     <script src="script.js"></script>
     <script src="templates.js"></script>
+    <script src="colors.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="colors.css" />
+
 </head>
 
 <body onload="loadPokemon()">
@@ -30,12 +32,14 @@
         </div>
 
     </nav>
-    <div>
-        <div class="loding-screen"></div>
-        <div class="single-card"></div>
-        <div id="allPokemons">
+
+    <div class="loding-screen"></div>
+    <div onclick="close()" id="single-card" class="single-card d-none">
+        <div class="singlePokemon"id="singlePokemon">
 
         </div>
+    </div>
+    <div id="allPokemons">
     </div>
 </body>
 

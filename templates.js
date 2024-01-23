@@ -1,6 +1,6 @@
 function createCard(j) {
     document.getElementById('allPokemons').innerHTML +=/*html*/ ` 
-    <div class="pokecard">
+    <div onclick="singlePokemon(${j})" class="pokecard">
         <div class="pokedex" id="pokedex${j}">
             <div class="poke-num-name">
                 <h2 class="nMargin" id="pokeNumber${j}">#</h2>
