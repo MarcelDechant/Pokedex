@@ -29,10 +29,10 @@ function renderPokemonInfo() {
         createCard(j);
 
         document.getElementById(`pokeName${j}`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
-        document.getElementById(`pokeimg${j}`).src = allPokemons[j]['sprites']['other']['dream_world']['front_default'];
+        document.getElementById(`pokeimg${j}`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
         document.getElementById(`pokeNumber${j}`).innerHTML += allPokemons[j]['id'];
         document.getElementById(`type${j}`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
-        typeColors(j)
+        typeColors(j);
     }
 }
 
@@ -46,17 +46,32 @@ function singlePokemon(j) {
     fullScreenContainer.classList.remove("d-none");
     singlePokemonCard.innerHTML = createsingleCard();
     renderSinglePokemon(j);
+    renderInfoAbout(j);
+    
+    
 }
+
 function renderSinglePokemon(j){
     document.getElementById(`singlePokeName`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
-    document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['dream_world']['front_default'];
+    document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
     document.getElementById(`singlePokeNumber`).innerHTML += allPokemons[j]['id'];
     document.getElementById(`singleType`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
     singleTypeColors(j)
 }
 
+function renderInfoAbout(j){
+    document.getElementById(`height`).innerHTML = allPokemons[j]['height'];
+    document.getElementById(`weight`).innerHTML = allPokemons[j]['weight'];
+    document.getElementById(`abiOne`).innerHTML = allPokemons[j]['abilities'][0]['ability']['name'];
+    document.getElementById(`abiTwo`).innerHTML = allPokemons[j]['abilities'][1]['ability']['name'];
+    
+}
 
-
+function imgChange(j){
+    
+    document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_shiny'];
+    
+}
 
 
 

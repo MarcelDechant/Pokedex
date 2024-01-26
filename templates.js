@@ -31,12 +31,25 @@ function createsingleCard(){
             </div>
             <div class="pokeInfo">
                 <div class="infoMenue">
-                    <div>About</div>
-                    <div>Base Stats</div>
-                    <div>Evolution</div>
-                    <div>Moves</div>
+                    <div class="cu-pointer">About</div>
+                    <div class="cu-pointer">Base Stats</div>  
                 </div>
-                <div class="data" id="data"></div>
+                <div class="data" id="data">
+                    <div class="flexCenter">
+                        <p>Height:</p> <p id="height">00</p>
+                    </div>
+                    <div class="flexCenter">
+                        <p>Weight:</p> <p id="weight">00</p>
+                    </div>
+                    <div class="flexCenter">
+                        <p>Shiny:</p> <img onclick="imgChange()" src="img/shining.png" alt="">
+
+                    </div>
+                    <div class="flexCenter">
+                        <p>Abilitis:</p>
+                        <div> <p id="abiOne"></p><p id="abiTwo"></p></div>
+                    </div>
+                </div>
             </div>
         </div>
     `;
