@@ -60,11 +60,11 @@ nav {
 }
 
 .pokecard {
-    width: 350px;
+    width: 336px;
     display: flex;
-    background-color: white;
     margin: 20px;
     cursor: pointer;
+    border-radius: 25px;
 }
 
 
@@ -126,13 +126,57 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .d-none{
     display: none !important;
 }
-.singlePokemon{
-height: 200px;
-width: 100px;
-background-color: yellow;
+
+.singlePokecard {
+    width: auto;
+    display: flex;
+    margin: 20px;
+    border-radius: 25px;
+    flex-direction: column;
+}
+.singlePokedex {
+    display: flex;
+    background-color: lightgrey;
+    color: white;
+    padding: 24px;
+    flex-direction: column;
+    border-radius: 25px;
+    
+}
+.singleTypeAndImage {
+    display: flex;
+}
+.singleType {
+    background-color: #F88D8D;
+    height: 22px;
+    width: auto;
+    padding: 3px;
+    text-align: center;
+    border-radius: 11px;
+    margin-top: 8px;
+}
+.singlePokeimg {
+    position: relative;
+    z-index: 2;
+    height: 200px;
+    width: 200px;
+    margin-left: 40px;
+}
+.pokeInfo{
+    width: 100%;
+    background-color: white;
+    border-radius: 25px;
+    margin-top: -40px;
+    z-index: 1;
+}
+.infoMenue{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
