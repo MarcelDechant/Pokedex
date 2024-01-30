@@ -15,13 +15,17 @@ function createCard(j) {
     </div>`
 }
 
-function createsingleCard(){
+function createsingleCard(j){
     return /*html*/ `
         <div class="singlePokecard">
             <div class="singlePokedex" id="singlePokedex">
                 <div class="poke-num-name">
-                    <h2 class="nMargin" id="singlePokeNumber">#</h2>
+                    <div class="num-close">
+                        <h2 class="nMargin" id="singlePokeNumber">#</h2>
+                        <div onclick="closeCard()" class="closeX">X</div>   
+                    </div>
                     <h1 class="nMargin" id="singlePokeName">Name</h1>
+                    
                 </div>
                 <div class="singleTypeAndImage">
                     <p class="singleType" id="singleType"></p>
@@ -31,7 +35,7 @@ function createsingleCard(){
             </div>
             <div class="pokeInfo">
                 <div class="infoMenue">
-                    <div class="cu-pointer">About</div>
+                    <div onclick="renderSinglePokemon(${j})" class="cu-pointer">About</div>
                     <div class="cu-pointer">Base Stats</div>  
                 </div>
                 <div class="data" id="data">
