@@ -1,91 +1,44 @@
-function typeColors(j){
+function setElementColorsBasedOnType(j, containerElement, typeElement, type2Element) {
+    const typeColorClasses = {
+        'fire': ['bgColorFire1', 'bgColorFire2'],
+        'grass': ['bgColorGrass1', 'bgColorGrass2'],
+        'water': ['bgColorWater1', 'bgColorWater2'],
+        'bug': ['bgColorBug1', 'bgColorBug2'],
+        'normal': ['bgColorNormal1', 'bgColorNormal2'],
+        'electric': ['bgColorElectric1', 'bgColorElectric2'],
+        'poison': ['bgColorPoison1', 'bgColorPoison2'],
+        'ground': ['bgColorGround1', 'bgColorGround2'],
+        'dragon': ['bgColorDragon1', 'bgColorDragon2'],
+        'ice': ['bgColorIce1', 'bgColorIce2'],
+        'rock': ['bgColorRock1', 'bgColorRock2'],
+        'steel': ['bgColorSteel1', 'bgColorSteel2'],
+        'flying':['bgColorFlying1','bgColorFlying2']
+    };
+
+    for (let i = 0; i < allPokemons[j]['types'].length; i++) {
+        const pokemonType = allPokemons[j]['types'][i]['type']['name'];
+        if (typeColorClasses[pokemonType]) {
+            const [class1, class2] = typeColorClasses[pokemonType];
+            if (i === 0) {
+                containerElement.classList.add(class1);
+                typeElement.classList.add(class2);
+            } else if (i === 1 && type2Element) {
+                type2Element.classList.add(class1, class2);
+            }
+        }
+    }
+}
+
+function typeColors(j) {
     const pokedexElement = document.getElementById(`pokedex${j}`);
     const typeElement = document.getElementById(`type${j}`);
-
-    if (allPokemons[j]['types'][0]['type']['name']=== 'fire') {
-        pokedexElement.classList.add("bgColorFire1")
-        typeElement.classList.add("bgColorFire2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'grass') {
-        pokedexElement.classList.add("bgColorGrass1")
-        typeElement.classList.add("bgColorGrass2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'water') {
-        pokedexElement.classList.add("bgColorWater1")
-        typeElement.classList.add("bgColorWater2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'bug') {
-        pokedexElement.classList.add("bgColorBug1")
-        typeElement.classList.add("bgColorBug2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'normal') {
-        pokedexElement.classList.add("bgColorNormal1")
-        typeElement.classList.add("bgColorNormal2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'electric') {
-        pokedexElement.classList.add("bgColorElectric1")
-        typeElement.classList.add("bgColorElectric2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'poison') {
-        pokedexElement.classList.add("bgColorPoison1")
-        typeElement.classList.add("bgColorPoison2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'ground') {
-        pokedexElement.classList.add("bgColorGround1")
-        typeElement.classList.add("bgColorGround2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'dragon') {
-        pokedexElement.classList.add("bgColorDragon1")
-        typeElement.classList.add("bgColorDragon2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'ice') {
-        pokedexElement.classList.add("bgColorIce1")
-        typeElement.classList.add("bgColorIce2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'rock') {
-        pokedexElement.classList.add("bgColorRock1")
-        typeElement.classList.add("bgColorRock2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'steel') {
-        pokedexElement.classList.add("bgColorSteel1")
-        typeElement.classList.add("bgColorSteel2")
-    } else if (allPokemons[j]['types'][0]['type']['name']=== 'dragon') {
-        pokedexElement.classList.add("bgColorDragon1")
-        typeElement.classList.add("bgColorDragon2")
-    }
+    const type2Element = document.getElementById(`type2_${j}`);
+    setElementColorsBasedOnType(j, pokedexElement, typeElement, type2Element);
 }
 
 function singleTypeColors(j) {
     const singlePokedexElement = document.getElementById(`singlePokedex`);
     const singleTypeElement = document.getElementById(`singleType`);
-
-    if (allPokemons[j]['types'][0]['type']['name'] === 'fire') {
-        singlePokedexElement.classList.add("bgColorFire1");
-        singleTypeElement.classList.add("bgColorFire2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'grass') {
-        singlePokedexElement.classList.add("bgColorGrass1");
-        singleTypeElement.classList.add("bgColorGrass2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'water') {
-        singlePokedexElement.classList.add("bgColorWater1");
-        singleTypeElement.classList.add("bgColorWater2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'bug') {
-        singlePokedexElement.classList.add("bgColorBug1");
-        singleTypeElement.classList.add("bgColorBug2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'normal') {
-        singlePokedexElement.classList.add("bgColorNormal1");
-        singleTypeElement.classList.add("bgColorNormal2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'electric') {
-        singlePokedexElement.classList.add("bgColorElectric1");
-        singleTypeElement.classList.add("bgColorElectric2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'poison') {
-        singlePokedexElement.classList.add("bgColorPoison1");
-        singleTypeElement.classList.add("bgColorPoison2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'ground') {
-        singlePokedexElement.classList.add("bgColorGround1");
-        singleTypeElement.classList.add("bgColorGround2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'dragon') {
-        singlePokedexElement.classList.add("bgColorDragon1");
-        singleTypeElement.classList.add("bgColorDragon2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'ice') {
-        singlePokedexElement.classList.add("bgColorIce1");
-        singleTypeElement.classList.add("bgColorIce2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'rock') {
-        singlePokedexElement.classList.add("bgColorRock1");
-        singleTypeElement.classList.add("bgColorRock2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'steel') {
-        singlePokedexElement.classList.add("bgColorSteel1");
-        singleTypeElement.classList.add("bgColorSteel2");
-    } else if (allPokemons[j]['types'][0]['type']['name'] === 'dragon') {
-        singlePokedexElement.classList.add("bgColorDragon1");
-        singleTypeElement.classList.add("bgColorDragon2");
-    }
+    const singleType2Element = document.getElementById(`singleType2`);
+    setElementColorsBasedOnType(j, singlePokedexElement, singleTypeElement, singleType2Element);
 }

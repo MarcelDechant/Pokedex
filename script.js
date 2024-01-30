@@ -2,9 +2,9 @@ let currentPokemon;
 let firstPokemon = 1;
 let lastPokemon = 15;
 let allPokemons = [];
-let shinyImg =[];
-let normalImg =[];
-let singleBaseStats=[];
+let shinyImg = [];
+let normalImg = [];
+let singleBaseStats = [];
 
 async function loadPokemon() {
     for (let i = firstPokemon; i < lastPokemon; i++) {
@@ -30,8 +30,13 @@ function renderPokemonInfo() {
         document.getElementById(`pokeimg${j}`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
         document.getElementById(`pokeNumber${j}`).innerHTML = '# ' + allPokemons[j]['id'];
         document.getElementById(`type${j}`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
+        if (allPokemons[j]['types'].length === 2) {
+            document.getElementById(`types${j}`).innerHTML += /*html*/ `<p class="type" id="type2_${j}"></p>`;
+            document.getElementById(`type2_${j}`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
+            
+        }
         typeColors(j);
-       
+
     }
 }
 
@@ -50,14 +55,24 @@ function renderSinglePokemon(j) {
     document.getElementById(`singlePokeName`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
     document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
     document.getElementById(`singlePokeNumber`).innerHTML = '# ' + allPokemons[j]['id'];
+
     document.getElementById(`singleType`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
-    singleTypeColors(j)
+    singleTypeColors(j, 'singlePokedex', 'singleType');
+
+    if (allPokemons[j]['types'].length === 2) {
+        document.getElementById(`singleTypes`).innerHTML += /*html*/ `<p class="singleType" id="singleType2"></p>`;
+        document.getElementById(`singleType2`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
+        singleTypeColors(j, 'singlePokedex', 'singleType2');
+    }
+
     let frontShinyPath = allPokemons[j]['sprites']['other']['official-artwork']['front_shiny'];
     shinyImg.push(frontShinyPath);
+
     let frontNormalPath = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
-    normalImg.push(frontNormalPath)
-    let baseStats =allPokemons[j]['stats'];
-    singleBaseStats.push(baseStats)
+    normalImg.push(frontNormalPath);
+
+    let baseStats = allPokemons[j]['stats'];
+    singleBaseStats.push(baseStats);
 }
 
 function renderInfoAbout(j) {
@@ -73,9 +88,9 @@ function imgChange() {
     let currentSrc = pokemonImg.src;
 
     if (normalImg.includes(currentSrc)) {
-        pokemonImg.src = shinyImg[0]; 
+        pokemonImg.src = shinyImg[0];
     } else if (shinyImg.includes(currentSrc)) {
-        pokemonImg.src = normalImg[0]; 
+        pokemonImg.src = normalImg[0];
     }
 }
 

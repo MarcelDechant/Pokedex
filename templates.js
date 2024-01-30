@@ -7,16 +7,19 @@ function createCard(j) {
                 <h1 class="nMargin" id="pokeName${j}">Name</h1>
             </div>
             <div class="typeAndImage">
+                <div id="types${j}">
                 <p class="type" id="type${j}"></p>
+                </div>
                 <img class="pokeimg" id="pokeimg${j}">
                 <img class="PokeballTranzparent" src="img/Pokeball-tranzparent.png" alt="">
             </div>
         </div>
-    </div>`
+    </div>`;
 }
 
+
 function createsingleCard(j){
-    return /*html*/ `
+    const singleCardHTML = /*html*/ `
         <div class="singlePokecard">
             <div class="singlePokedex" id="singlePokedex">
                 <div class="poke-num-name">
@@ -28,7 +31,9 @@ function createsingleCard(j){
                     
                 </div>
                 <div class="singleTypeAndImage">
-                    <p class="singleType" id="singleType"></p>
+                    <div id="singleTypes">
+                        <p class="singleType" id="singleType"></p>
+                    </div>
                     <img class="singlePokeimg" id="singlePokeimg">
                     <img class="PokeballTranzparent" src="img/Pokeball-tranzparent.png" alt="">
                 </div>
@@ -47,7 +52,6 @@ function createsingleCard(j){
                     </div>
                     <div class="flexCenter">
                         <p>Shiny:</p> <img onclick="imgChange()" src="img/shining.png" alt="">
-
                     </div>
                     <div class="flexCenter">
                         <p>Abilitis:</p>
@@ -57,4 +61,6 @@ function createsingleCard(j){
             </div>
         </div>
     `;
+
+    return singleCardHTML;
 }
