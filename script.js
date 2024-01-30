@@ -101,5 +101,6 @@ function closeCard() {
     document.getElementById('single-card').classList.add("d-none");
     normalImg.splice(0)
     shinyImg.splice(0)
+    singleBaseStats.splice(0)
 }
 

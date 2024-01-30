@@ -18,7 +18,7 @@ function createCard(j) {
 }
 
 
-function createsingleCard(j){
+function createsingleCard(j) {
     const singleCardHTML = /*html*/ `
         <div class="singlePokecard">
             <div class="singlePokedex" id="singlePokedex">
@@ -40,8 +40,8 @@ function createsingleCard(j){
             </div>
             <div class="pokeInfo">
                 <div class="infoMenue">
-                    <div onclick="renderSinglePokemon(${j})" class="cu-pointer">About</div>
-                    <div class="cu-pointer">Base Stats</div>  
+                    <div onclick="createSingleAbout(${j})" class="cu-pointer">About</div>
+                    <div onclick="createSingleChart()" class="cu-pointer">Base Stats</div>  
                 </div>
                 <div class="data" id="data">
                     <div class="flexCenter">
@@ -64,3 +64,72 @@ function createsingleCard(j){
 
     return singleCardHTML;
 }
+
+function createSingleAbout(j) {
+    singlePokemon(j)
+}
+
+
+function createSingleChart() {
+
+    const labels = [
+        'HP',
+        'Attack',
+        'Defense',
+        'Sp.Atk',
+        'Sp.Def',
+        'Speed'
+    ];
+    let hp = singleBaseStats[0][0]['base_stat']
+    let attack = singleBaseStats[0][1]['base_stat']
+    let defense = singleBaseStats[0][2]['base_stat']
+    let specialattack = singleBaseStats[0][3]['base_stat']
+    let specialdefense = singleBaseStats[0][4]['base_stat']
+    let speed = singleBaseStats[0][5]['base_stat']
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'Stats',
+            data: [hp, attack, defense, specialattack, specialdefense, speed],
+            fill: true,
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgb(255, 99, 132)',
+            pointBackgroundColor: 'rgb(255, 99, 132)',
+            pointBorderColor: '#fff',
+            pointHoverBackgroundColor: '#fff',
+            pointHoverBorderColor: 'rgb(255, 99, 132)'
+        }]
+    };
+
+    const config = {
+        type: 'radar',
+        data: data,
+        options: {
+            scale: {
+                r:{
+                    max: 120 ,
+                    min:0,
+                    // ticks: {
+                    //     stepSitze: 30
+                    // },
+                },
+            },
+            elements: {
+                line: {
+                    borderWidth: 1
+                }
+            }
+        },
+    };
+
+    document.getElementById('data').innerHTML = `
+            <div class="data" id="chartData">
+                <canvas id="myRadarChart"></canvas>
+            </div>
+        `;
+
+    const ctx = document.getElementById('myRadarChart').getContext('2d');
+    new Chart(ctx, config);
+}
+
