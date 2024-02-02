@@ -1,13 +1,14 @@
 let currentPokemon;
 let firstPokemon = 1;
-let lastPokemon = 15;
+let lastPokemon = 30;
 let allPokemons = [];
+let searchPokemon = [];
 let shinyImg = [];
 let normalImg = [];
 let singleBaseStats = [];
 
 async function loadPokemon() {
-    for (let i = firstPokemon; i < lastPokemon; i++) {
+    for (let i = firstPokemon; i <= lastPokemon; i++) {
 
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
         // let url = 'https://pokeapi.co/api/v2/pokemon/charmeleon';
@@ -33,11 +34,12 @@ function renderPokemonInfo() {
         if (allPokemons[j]['types'].length === 2) {
             document.getElementById(`types${j}`).innerHTML += /*html*/ `<p class="type" id="type2_${j}"></p>`;
             document.getElementById(`type2_${j}`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
-            
+
         }
         typeColors(j);
 
     }
+    closeLoadingScreen();
 }
 
 
@@ -52,27 +54,52 @@ function singlePokemon(j) {
 }
 
 function renderSinglePokemon(j) {
-    document.getElementById(`singlePokeName`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
-    document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
-    document.getElementById(`singlePokeNumber`).innerHTML = '# ' + allPokemons[j]['id'];
+    if (searchPokemon.length === 0) {
+        document.getElementById(`singlePokeName`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
+        document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
+        document.getElementById(`singlePokeNumber`).innerHTML = '# ' + allPokemons[j]['id'];
 
-    document.getElementById(`singleType`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
-    singleTypeColors(j, 'singlePokedex', 'singleType');
+        document.getElementById(`singleType`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
+        singleTypeColors(j, 'singlePokedex', 'singleType');
 
-    if (allPokemons[j]['types'].length === 2) {
-        document.getElementById(`singleTypes`).innerHTML += /*html*/ `<p class="singleType" id="singleType2"></p>`;
-        document.getElementById(`singleType2`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
-        singleTypeColors(j, 'singlePokedex', 'singleType2');
+        if (allPokemons[j]['types'].length === 2) {
+            document.getElementById(`singleTypes`).innerHTML += /*html*/ `<p class="singleType" id="singleType2"></p>`;
+            document.getElementById(`singleType2`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
+            singleTypeColors(j, 'singlePokedex', 'singleType2');
+        }
+
+        let frontShinyPath = allPokemons[j]['sprites']['other']['official-artwork']['front_shiny'];
+        shinyImg.push(frontShinyPath);
+
+        let frontNormalPath = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
+        normalImg.push(frontNormalPath);
+
+        let baseStats = allPokemons[j]['stats'];
+        singleBaseStats.push(baseStats);
+    } else {
+        document.getElementById(`singlePokeName`).innerHTML = searchPokemon[j]['name'].charAt(0).toUpperCase() + searchPokemon[j]['name'].slice(1);
+        document.getElementById(`singlePokeimg`).src = searchPokemon[j]['sprites']['other']['official-artwork']['front_default'];
+        document.getElementById(`singlePokeNumber`).innerHTML = '# ' + searchPokemon[j]['id'];
+
+        document.getElementById(`singleType`).innerHTML = searchPokemon[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][0]['type']['name'].slice(1);
+        singleTypeColors(j, 'singlePokedex', 'singleType');
+
+        if (searchPokemon[j]['types'].length === 2) {
+            document.getElementById(`singleTypes`).innerHTML += /*html*/ `<p class="singleType" id="singleType2"></p>`;
+            document.getElementById(`singleType2`).innerHTML = searchPokemon[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][1]['type']['name'].slice(1);
+            singleTypeColors(j, 'singlePokedex', 'singleType2');
+        }
+
+        let frontShinyPath = searchPokemon[j]['sprites']['other']['official-artwork']['front_shiny'];
+        shinyImg.push(frontShinyPath);
+
+        let frontNormalPath = searchPokemon[j]['sprites']['other']['official-artwork']['front_default'];
+        normalImg.push(frontNormalPath);
+
+        let baseStats = searchPokemon[j]['stats'];
+        singleBaseStats.push(baseStats);
     }
 
-    let frontShinyPath = allPokemons[j]['sprites']['other']['official-artwork']['front_shiny'];
-    shinyImg.push(frontShinyPath);
-
-    let frontNormalPath = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
-    normalImg.push(frontNormalPath);
-
-    let baseStats = allPokemons[j]['stats'];
-    singleBaseStats.push(baseStats);
 }
 
 function renderInfoAbout(j) {
@@ -95,8 +122,6 @@ function imgChange() {
 }
 
 
-
-
 function closeCard() {
     document.getElementById('single-card').classList.add("d-none");
     normalImg.splice(0)
@@ -104,3 +129,67 @@ function closeCard() {
     singleBaseStats.splice(0)
 }
 
+function closeLoadingScreen() {
+    let loadingScreen = document.getElementById("loding-screen");
+    loadingScreen.classList.add("d-none");
+}
+
+function openLoadingScreen() {
+    let loadingScreen = document.getElementById("loding-screen");
+    loadingScreen.classList.remove("d-none");
+}
+
+async function loadMorePokemon() {
+    openLoadingScreen();
+    firstPokemon += lastPokemon;
+    let numberOfPokemonToLoad = 30;
+    lastPokemon = numberOfPokemonToLoad;
+
+    await pokemonFetchLoadMore(numberOfPokemonToLoad);
+
+}
+
+async function pokemonFetchLoadMore(numberOfPokemonToLoad) {
+    for (let i = firstPokemon; i < numberOfPokemonToLoad + firstPokemon; i++) {
+        let singleUrl = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        let singleResponse = await fetch(singleUrl);
+        let singleResponseAsJson = await singleResponse.json();
+        allPokemons.push(singleResponseAsJson);
+
+        console.log('Loaded pokemon', currentPokemon);
+    }
+    document.getElementById("allPokemons").innerHTML = "";
+    renderPokemonInfo();
+}
+
+
+function searchNumber() {
+    let searchTermNumber = document.getElementById("searchNumber").value
+
+    document.getElementById("allPokemons").innerHTML = "";
+    searchPokemon = allPokemons.filter((pokemon) => pokemon.id === parseInt(searchTermNumber));
+    console.log('searchNumber()', searchTermNumber);
+    searchSinglePokemonNumber();
+    if (searchTermNumber === "") {
+        renderPokemonInfo();
+    }
+}
+
+function searchSinglePokemonNumber() {
+    for (let j = 0; j < searchPokemon.length; j++) {
+        createCard(j)
+
+        document.getElementById(`pokeName${j}`).innerHTML = searchPokemon[j]['name'].charAt(0).toUpperCase() + searchPokemon[j]['name'].slice(1);
+        document.getElementById(`pokeimg${j}`).src = searchPokemon[j]['sprites']['other']['official-artwork']['front_default'];
+        document.getElementById(`pokeNumber${j}`).innerHTML = '# ' + searchPokemon[j]['id'];
+        document.getElementById(`type${j}`).innerHTML = searchPokemon[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][0]['type']['name'].slice(1);
+        if (searchPokemon[j]['types'].length === 2) {
+            document.getElementById(`types${j}`).innerHTML += /*html*/ `<p class="type" id="type2_${j}"></p>`;
+            document.getElementById(`type2_${j}`).innerHTML = searchPokemon[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][1]['type']['name'].slice(1);
+
+        }
+        typeColors(j);
+
+    }
+    closeLoadingScreen();
+}

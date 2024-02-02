@@ -27,18 +27,25 @@
                 <img class="logoName" src="img\Pokedex.png" alt="">
             </div>
             <div class="search">
-                <input class="searchNumber" type="number" min="1" placeholder="Search Pokemon Number....">
-                <input class="searchName" type="text" placeholder="Search Pokemon Name....">
+                <input oninput="searchNumber()" id="searchNumber" class="searchNumber" type="number" min="1" placeholder="Search Pokemon Number....">
+                <input id="searchName" class="searchName" type="text" placeholder="Search Pokemon Name....">
             </div>
         </div>
 
     </nav>
 
-    <div class="loding-screen"></div>
+    <div id="loding-screen" class="loding-screen">
+        <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+            <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+         </svg>
+    </div>
     <div  id="single-card" class="single-card d-none">
        
     </div>
     <div id="allPokemons">
+    </div>
+    <div class="load-more-field">
+        <button onclick="loadMorePokemon()">load More Pokemon</button>
     </div>
 </body>
 
