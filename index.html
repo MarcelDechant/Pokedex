@@ -28,7 +28,7 @@
             </div>
             <div class="search">
                 <input oninput="searchNumber()" id="searchNumber" class="searchNumber" type="number" min="1" placeholder="Search Pokemon Number....">
-                <input id="searchName" class="searchName" type="text" placeholder="Search Pokemon Name....">
+                <input onkeyup="searchName()" id="searchName" class="searchName" type="text" placeholder="Search Pokemon Name....">
             </div>
         </div>
 
@@ -44,7 +44,7 @@
     </div>
     <div id="allPokemons">
     </div>
-    <div class="load-more-field">
+    <div id="load-more-field" class="load-more-field">
         <button onclick="loadMorePokemon()">load More Pokemon</button>
     </div>
 </body>

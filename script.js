@@ -165,13 +165,28 @@ async function pokemonFetchLoadMore(numberOfPokemonToLoad) {
 
 function searchNumber() {
     let searchTermNumber = document.getElementById("searchNumber").value
-
+    let loadMoreField = document.getElementById("load-more-field")
     document.getElementById("allPokemons").innerHTML = "";
     searchPokemon = allPokemons.filter((pokemon) => pokemon.id === parseInt(searchTermNumber));
-    console.log('searchNumber()', searchTermNumber);
     searchSinglePokemonNumber();
+    loadMoreField.classList.add("d-none")
     if (searchTermNumber === "") {
+        loadMoreField.classList.remove("d-none")
         renderPokemonInfo();
+    }
+}
+function searchName() {
+    let searchTermName = document.getElementById("searchName").value
+    let loadMoreField = document.getElementById("load-more-field")
+    document.getElementById("allPokemons").innerHTML = "";
+    searchPokemon = allPokemons.filter((pokemon) => pokemon.name.startsWith(searchTermName));
+    searchSinglePokemonNumber();
+    loadMoreField.classList.add("d-none")
+    if (searchTermName === "") {
+        searchPokemon = [];
+        document.getElementById("allPokemons").innerHTML = "";
+        renderPokemonInfo();
+        loadMoreField.classList.remove("d-none")
     }
 }
 
