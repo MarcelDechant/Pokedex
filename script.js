@@ -9,24 +9,17 @@ let singleBaseStats = [];
 
 async function loadPokemon() {
     for (let i = firstPokemon; i <= lastPokemon; i++) {
-
         let url = `https://pokeapi.co/api/v2/pokemon/${i}`;
-        // let url = 'https://pokeapi.co/api/v2/pokemon/charmeleon';
-        // let url = 'https://pokeapi.co/api/v2/pokemon/charizard';
-
         let response = await fetch(url);
         currentPokemon = await response.json();
         allPokemons.push(currentPokemon);
-        console.log('Loaded pokemon', currentPokemon);
     }
     renderPokemonInfo();
 }
 
-
 function renderPokemonInfo() {
     for (let j = 0; j < allPokemons.length; j++) {
         createCard(j);
-
         document.getElementById(`pokeName${j}`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
         document.getElementById(`pokeimg${j}`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
         document.getElementById(`pokeNumber${j}`).innerHTML = '# ' + allPokemons[j]['id'];
@@ -34,14 +27,11 @@ function renderPokemonInfo() {
         if (allPokemons[j]['types'].length === 2) {
             document.getElementById(`types${j}`).innerHTML += /*html*/ `<p class="type" id="type2_${j}"></p>`;
             document.getElementById(`type2_${j}`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
-
         }
         typeColors(j);
-
     }
     closeLoadingScreen();
 }
-
 
 function singlePokemon(j) {
     const selectedPokemon = allPokemons[j];
@@ -58,29 +48,23 @@ function renderSinglePokemon(j) {
         document.getElementById(`singlePokeName`).innerHTML = allPokemons[j]['name'].charAt(0).toUpperCase() + allPokemons[j]['name'].slice(1);
         document.getElementById(`singlePokeimg`).src = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
         document.getElementById(`singlePokeNumber`).innerHTML = '# ' + allPokemons[j]['id'];
-
         document.getElementById(`singleType`).innerHTML = allPokemons[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][0]['type']['name'].slice(1);
         singleTypeColors(j, 'singlePokedex', 'singleType');
-
         if (allPokemons[j]['types'].length === 2) {
             document.getElementById(`singleTypes`).innerHTML += /*html*/ `<p class="singleType" id="singleType2"></p>`;
             document.getElementById(`singleType2`).innerHTML = allPokemons[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + allPokemons[j]['types'][1]['type']['name'].slice(1);
             singleTypeColors(j, 'singlePokedex', 'singleType2');
         }
-
         let frontShinyPath = allPokemons[j]['sprites']['other']['official-artwork']['front_shiny'];
         shinyImg.push(frontShinyPath);
-
         let frontNormalPath = allPokemons[j]['sprites']['other']['official-artwork']['front_default'];
         normalImg.push(frontNormalPath);
-
         let baseStats = allPokemons[j]['stats'];
         singleBaseStats.push(baseStats);
     } else {
         document.getElementById(`singlePokeName`).innerHTML = searchPokemon[j]['name'].charAt(0).toUpperCase() + searchPokemon[j]['name'].slice(1);
         document.getElementById(`singlePokeimg`).src = searchPokemon[j]['sprites']['other']['official-artwork']['front_default'];
         document.getElementById(`singlePokeNumber`).innerHTML = '# ' + searchPokemon[j]['id'];
-
         document.getElementById(`singleType`).innerHTML = searchPokemon[j]['types'][0]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][0]['type']['name'].slice(1);
         singleTypeColors(j, 'singlePokedex', 'singleType');
 
@@ -89,13 +73,10 @@ function renderSinglePokemon(j) {
             document.getElementById(`singleType2`).innerHTML = searchPokemon[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][1]['type']['name'].slice(1);
             singleTypeColors(j, 'singlePokedex', 'singleType2');
         }
-
         let frontShinyPath = searchPokemon[j]['sprites']['other']['official-artwork']['front_shiny'];
         shinyImg.push(frontShinyPath);
-
         let frontNormalPath = searchPokemon[j]['sprites']['other']['official-artwork']['front_default'];
         normalImg.push(frontNormalPath);
-
         let baseStats = searchPokemon[j]['stats'];
         singleBaseStats.push(baseStats);
     }
@@ -107,20 +88,17 @@ function renderInfoAbout(j) {
     document.getElementById(`weight`).innerHTML = allPokemons[j]['weight'];
     document.getElementById(`abiOne`).innerHTML = allPokemons[j]['abilities'][0]['ability']['name'];
     document.getElementById(`abiTwo`).innerHTML = allPokemons[j]['abilities'][1]['ability']['name'];
-
 }
 
 function imgChange() {
     let pokemonImg = document.getElementById(`singlePokeimg`);
     let currentSrc = pokemonImg.src;
-
     if (normalImg.includes(currentSrc)) {
         pokemonImg.src = shinyImg[0];
     } else if (shinyImg.includes(currentSrc)) {
         pokemonImg.src = normalImg[0];
     }
 }
-
 
 function closeCard() {
     document.getElementById('single-card').classList.add("d-none");
@@ -144,9 +122,7 @@ async function loadMorePokemon() {
     firstPokemon += lastPokemon;
     let numberOfPokemonToLoad = 30;
     lastPokemon = numberOfPokemonToLoad;
-
     await pokemonFetchLoadMore(numberOfPokemonToLoad);
-
 }
 
 async function pokemonFetchLoadMore(numberOfPokemonToLoad) {
@@ -155,13 +131,11 @@ async function pokemonFetchLoadMore(numberOfPokemonToLoad) {
         let singleResponse = await fetch(singleUrl);
         let singleResponseAsJson = await singleResponse.json();
         allPokemons.push(singleResponseAsJson);
-
         console.log('Loaded pokemon', currentPokemon);
     }
     document.getElementById("allPokemons").innerHTML = "";
     renderPokemonInfo();
 }
-
 
 function searchNumber() {
     let searchTermNumber = document.getElementById("searchNumber").value
@@ -175,6 +149,7 @@ function searchNumber() {
         renderPokemonInfo();
     }
 }
+
 function searchName() {
     let searchTermName = document.getElementById("searchName").value
     let loadMoreField = document.getElementById("load-more-field")
@@ -201,10 +176,8 @@ function searchSinglePokemonNumber() {
         if (searchPokemon[j]['types'].length === 2) {
             document.getElementById(`types${j}`).innerHTML += /*html*/ `<p class="type" id="type2_${j}"></p>`;
             document.getElementById(`type2_${j}`).innerHTML = searchPokemon[j]['types'][1]['type']['name'].charAt(0).toUpperCase() + searchPokemon[j]['types'][1]['type']['name'].slice(1);
-
         }
         typeColors(j);
-
     }
     closeLoadingScreen();
 }
