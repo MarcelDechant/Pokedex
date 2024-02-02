@@ -2,6 +2,8 @@ body {
     margin: 0;
     background-image: url('img/pattern.jpg');
     font-family: "Open Sans", sans-serif;
+    flex-direction: column;
+    display: flex;
 }
 
 nav {
@@ -56,7 +58,10 @@ nav {
 #allPokemons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin-top: 160px;
+    max-width: 1920px;
 }
 
 .pokecard {
@@ -126,7 +131,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    padding-top: 40px;
 }
 
 .cu-pointer {
@@ -397,6 +402,9 @@ nav {
 
     #single-card {
         height: 87.2%;
+    }
+    .closeX{
+        margin-right: 0;
     }
 }
 
