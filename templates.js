@@ -17,7 +17,6 @@ function createCard(j) {
     </div>`;
 }
 
-
 function createsingleCard(j) {
     const singleCardHTML = /*html*/ `
         <div class="singlePokecard">
@@ -31,7 +30,7 @@ function createsingleCard(j) {
                     
                 </div>
                 <div class="singleTypeAndImage">
-                    <div onclick="previousPokemon(${j})" class="leftpart">
+                    <div id="leftarrow" onclick="previousPokemon(${j})" class="leftpart">
                         <img class="leftarrow" src="img/linker-pfeil.png" alt="">
                     </div>
                     <div id="singleTypes">
@@ -39,7 +38,7 @@ function createsingleCard(j) {
                     </div>
                     <img class="singlePokeimg" id="singlePokeimg">
                     <img class="PokeballTranzparent" src="img/Pokeball-tranzparent.png" alt="">
-                    <div onclick="nextPokemon(${j})" class="rightpart">
+                    <div id="rightarrow" onclick="nextPokemon(${j})" class="rightpart">
                         <img class="rightarrow" src="img/rechter-pfeil.png" alt="">
                     </div>
                 </div>
@@ -84,7 +83,6 @@ function createsingleCard(j) {
 function createSingleAbout(j) {
     singlePokemon(j)
 }
-
 
 function createSingleChart() {
 
@@ -148,4 +146,3 @@ function createSingleChart() {
     const ctx = document.getElementById('myRadarChart').getContext('2d');
     new Chart(ctx, config);
 }
-
