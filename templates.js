@@ -31,11 +31,17 @@ function createsingleCard(j) {
                     
                 </div>
                 <div class="singleTypeAndImage">
+                    <div onclick="previousPokemon(${j})" class="leftpart">
+                        <img class="leftarrow" src="img/linker-pfeil.png" alt="">
+                    </div>
                     <div id="singleTypes">
                         <p class="singleType" id="singleType"></p>
                     </div>
                     <img class="singlePokeimg" id="singlePokeimg">
                     <img class="PokeballTranzparent" src="img/Pokeball-tranzparent.png" alt="">
+                    <div onclick="nextPokemon(${j})" class="rightpart">
+                        <img class="rightarrow" src="img/rechter-pfeil.png" alt="">
+                    </div>
                 </div>
             </div>
             <div class="pokeInfo">
@@ -44,19 +50,29 @@ function createsingleCard(j) {
                     <div onclick="createSingleChart()" class="cu-pointer">Base Stats</div>  
                 </div>
                 <div class="data" id="data">
-                    <div class="flexCenter">
-                        <p>Height:</p> <p id="height">00</p>
-                    </div>
-                    <div class="flexCenter">
-                        <p>Weight:</p> <p id="weight">00</p>
-                    </div>
-                    <div class="flexCenter">
-                        <p>Shiny:</p> <img onclick="imgChange()" src="img/shining.png" alt="">
-                    </div>
-                    <div class="flexCenter">
-                        <p>Abilitis:</p>
-                        <div> <p id="abiOne"></p><p id="abiTwo"></p></div>
-                    </div>
+                    <table>
+                        <tr>
+                            <td>Height:</td>
+                            <td id="height">00</td>
+                        </tr>
+                        <tr>
+                            <td>Weight:</td>
+                            <td id="weight">00</td>
+                        </tr>
+                        <tr>
+                            <td>Shiny:</td>
+                            <td>
+                                <img onclick="imgChange()" src="img/shining.png" alt="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Abilities:</td>
+                            <td>
+                                <p id="abiOne"></p>
+                                <p id="abiTwo"></p>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -107,9 +123,9 @@ function createSingleChart() {
         data: data,
         options: {
             scale: {
-                r:{
-                    max: 120 ,
-                    min:0,
+                r: {
+                    max: 120,
+                    min: 0,
                     // ticks: {
                     //     stepSitze: 30
                     // },
